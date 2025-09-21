@@ -12,16 +12,53 @@
   <!-- ヘッダー -->
   <header class="header">
     <h1 class="logo">Yomowell-ヨモウェル-</h1>
+  
+  <!-- ハンバーガーメニューアイコン -->
+    <div class="menu-toggle">
+        <i class="fa-solid fa-bars"></i>
+    </div>
+
     <nav>
-      <ul class="nav"> 
+        <ul class="nav"> 
         <li><a href="#about">サロンについて</a></li>
         <li><a href="#menu">メニュー</a></li>
         <li><a href="#access">アクセス</a></li>
         <li><a href="#contact">お問い合わせ</a></li>
         <li><a href="https://www.instagram.com/yomowell_omiya?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="><i class="fa-brands fa-instagram"></i></a></li>
-      </ul>
+        </ul>
     </nav>
   </header>
+
+
+  <script>
+
+    const toggle = document.querySelector('.menu-toggle');
+    const nav = document.querySelector('.nav');
+
+    toggle.addEventListener('click', () => {
+    if (nav.dataset.open === "true") {
+        // 閉じる
+        nav.style.maxHeight = "0px";
+        nav.dataset.open = "false";
+    } else {
+        // 開く
+        const navHeight = nav.scrollHeight; // 中身の高さを正確に取得
+        nav.style.maxHeight = navHeight + "px"; // padding込みの正確な高さ
+        nav.dataset.open = "true";
+    }
+    });
+
+    // ウィンドウリサイズ対応
+    window.addEventListener('resize', () => {
+    if (nav.dataset.open === "true") {
+        nav.style.maxHeight = nav.scrollHeight + "px";
+    }
+    });
+
+
+
+  </script>
+
 
   <!-- メインビジュアル -->
   <section class="hero">
@@ -46,7 +83,7 @@
                 <p>だからこそ、週に一度だけでも、<br>“自分のための時間”を持つことが大切。
                 <p>気持ちをリセットできるひとときが、心を穏やかに整え、明日への活力につながります。</p>
                 <p>Yomowellは、産後のケアや妊活中のサポート、<br>そしてストレスや不調に悩むすべての女性を応援したい。</p>
-                <p>自分のカラダを大切にできるのは“わたし自身”。<br>特別なご褒美ではなく、習慣としてケアを取り入れてほしい。<br>そんな想いから、Yomowellは生まれました。</p>
+                <p>自分のカラダを大切にできるのは“わたし自身”。<br>ケアは特別なご褒美ではなく、日常に寄り添う習慣であってほしい。<br>そんな想いから、Yomowellは生まれました。</p>
             </div>  
         </div>
     </div>
@@ -159,7 +196,6 @@
     </div>
   </section>
     <!-- FAQアコーディオン -->
-  <html lang="ja">
 
     <div class="section">
         <div class="container">
@@ -223,5 +259,7 @@
   <footer class="footer">
     <p>&copy;Yomowell-ヨモウェル-</p>
   </footer>
+
+
 </body>
 </html>

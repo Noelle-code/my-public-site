@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Noto+Serif+JP&display=swap');
 /* ベース設定 */
+html, body {
+  overflow-x: hidden;
+}
 
 body {
   font-family: 'Noto Serif JP', sans-serif;
@@ -8,6 +11,59 @@ body {
   line-height: 1.6;
   color: #333;
 }
+
+/* 共通：PCでは非表示 */
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
+}
+
+
+@media (max-width: 768px) {
+  body { font-size: 14px; }
+
+  h1 { font-size: 1.5rem; }
+  h2 { font-size: 1.2rem; }
+
+  .header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+  }
+
+  .menu-toggle  {
+    display: block;   /* ← スマホでは表示 */
+    font-size: 2rem;
+    color: white;
+    cursor: pointer;
+    position: relative;
+  }
+
+  .nav {
+    flex-direction: column;
+    gap: 10px;
+    background: #1F3B2A;
+    width: 100%;
+    padding: 0 20px;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    box-sizing: border-box;
+
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease, padding 0.3s ease;
+  }
+
+  .nav.open {
+    max-height: 500px;
+    padding: 10px 20px;
+  }
+}
+
 
 h1, h2 {
   margin: 0 0 20px;
@@ -28,9 +84,12 @@ h1, h2 {
   z-index: 10;
 }
 
+
 .logo {
   font-size: 1.5rem;
 }
+
+
 
 .nav {
   list-style: none;
@@ -58,6 +117,13 @@ h1, h2 {
 
 
 
+
+
+
+
+
+
+
 /* メインビジュアル */
 .hero {
     position:relative;
@@ -72,6 +138,12 @@ h1, h2 {
   display: flex;
   color: #fff;
 }
+@media (max-width: 768px) {
+  .hero {
+    padding: 100px 20px 80px 20px;
+    height: auto;
+  }
+}
 .hero::before {
   content: "";
   position: absolute;
@@ -82,6 +154,7 @@ h1, h2 {
   background: rgba(34, 49, 52, 0.5); /* 半透明のオーバーレイ */
   z-index: 1;
 }
+
 .hero h2,
 .hero p,
 .hero .btn {
@@ -92,10 +165,12 @@ h1, h2 {
   font-size: 2rem;
 }
 
+
 .hero p {
   font-size: 1.2rem;
   margin-bottom: 20px;
 }
+
 
 .btn {
   display: inline-block;
@@ -107,14 +182,19 @@ h1, h2 {
   transition: all 0.3s ease;
 }
 
+
 .btn:hover {
   background: #EFA8A8; /* ピンク */
 }
+
+
 /* セクション共通 */
 .section {
   padding: 60px 20px;
   background-color: #f5f1e6;
 }
+
+
 .section h2{
     color:#d6c7a1;
     border-top:5px double #4d4040 ;
@@ -126,6 +206,11 @@ h1, h2 {
   margin: auto;
 }
 
+@media (max-width: 768px) {
+  .section {
+    padding: 40px 10px;
+  }
+}
 /* サロン紹介セクション */
 .about {
   display: flex;
@@ -133,10 +218,24 @@ h1, h2 {
   align-items: center; /* 縦方向中央揃え */
   margin-top: 20px;
 }
+
 .about-left img{
     width: 400px;
     height: 400px;
     object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .about {
+    flex-direction: column; /* 縦並びにする */
+    align-items: center;    /* 中央寄せ */
+  }
+
+  .about-left img {
+    width: 300px;  /* モバイル用に少し小さめ */
+    height: auto;
+    margin-top: 20px;
+  }
 }
 
 /* よもぎ蒸しセクション */
@@ -151,6 +250,22 @@ h1, h2 {
     height: 400px;
     object-fit: contain;
 }
+
+@media (max-width: 768px) {
+  .yomogi {
+    flex-direction: column; /* 縦並びにする */
+    align-items: center;    /* 中央寄せ */
+  }
+
+  .yomogi-right img {
+    width: 300px;  /* モバイル用に少し小さめ */
+    height: auto;
+    margin-top: 20px;
+  }
+  .yomogi-left { order: 2; }
+  .yomogi-right { order: 1; }
+
+}
 /* パーソナルトレーニングセクション */
 .training {
   display: flex;
@@ -162,6 +277,19 @@ h1, h2 {
     width: 400px;
     height: 400px;
     object-fit: contain;
+}
+
+@media (max-width: 768px) {
+  .training {
+    flex-direction: column; /* 縦並びにする */
+    align-items: center;    /* 中央寄せ */
+  }
+
+  .training-left img {
+    width: 300px;  /* モバイル用に少し小さめ */
+    height: auto;
+    margin-top: 20px;
+  }
 }
 /* よもぎ蒸し×パーソナルトレーニングセクション */
 .combo1 {
@@ -188,6 +316,21 @@ h1, h2 {
     object-fit: contain;
 }
 
+@media (max-width: 768px) {
+  .combo1, .combo2 {
+    flex-direction: column; /* 縦並びにする */
+    align-items: center;    /* 中央寄せ */
+  }
+
+  .combo1-right img, .combo2-left img {
+    width: 300px;  /* モバイル用に少し小さめ */
+    height: auto;
+    margin-top: 20px;
+  }
+
+  .combo2-left { order: 2; }
+  .combo2-right { order: 1; }
+}
 
 
 /* メニューセクション */
@@ -213,6 +356,17 @@ h1, h2 {
   font-weight: bold;
   color: #444;
   white-space: nowrap; /* 改行防止 */
+}
+
+@media (max-width: 768px) {
+  .menu-list li {
+    flex-direction: column; /* 縦並びにする */
+    align-items: flex-start; /* 左寄せ */
+  }
+
+  .menu-price {
+    margin-top: 5px; /* 上下の余白 */
+  }
 }
 /* FAQセクション */
 
@@ -255,6 +409,13 @@ color: #555;
 display: block;
 }
 
+@media media (max-width: 768px) {
+  .faq {
+    padding: 0 10px;
+  }
+  
+}
+
 /*アクセスセクション*/
 .access{
   display: flex;
@@ -277,6 +438,8 @@ display: block;
   object-fit: contain; /* ロゴが潰れないように */
 }
 
+
+
 /* ▼スマホ対応 */
 @media (max-width: 768px) {
   .access {
@@ -285,7 +448,7 @@ display: block;
   }
 
   .access-right img {
-    width: 200px;  /* モバイル用に少し小さめ */
+    width: 300px;  /* モバイル用に少し小さめ */
     height: auto;
     margin-top: 20px;
   }
@@ -303,6 +466,8 @@ display: block;
   text-align: center;
 }
 
+
+
 .contact-container {
   background: #fff; /* 中の白いボックス */
   padding: 30px;
@@ -310,17 +475,22 @@ display: block;
   margin: 0 auto;
 }
 
+
+
 .contact h2 {
   font-size: 1.8rem;
   color: #4d4040;
   margin-bottom: 15px;
 }
 
+
 .contact p {
   color: #6a5c5c;
   margin-bottom: 20px;
   line-height: 1.6;
 }
+
+
 
 .contact-buttons {
   display: flex;
@@ -329,6 +499,8 @@ display: block;
   margin-bottom: 30px;
   flex-wrap: wrap;
 }
+
+
 
 .contact-btn {
   display: inline-block;
@@ -340,6 +512,9 @@ display: block;
   transition: background 0.3s;
 }
 
+
+}
+
 .contact-btn:hover {
   background: #EFA8A8; /* ピンク */
 }
@@ -349,6 +524,7 @@ display: block;
   padding: 15px;
   margin-top: 20px;
 }
+
 
 .contact-info p {
   margin: 5px 0;
@@ -371,4 +547,11 @@ display: block;
   color: white;
   text-align: center;
   padding: 15px 0;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    font-size: 14px;
+  }
+  
 }
